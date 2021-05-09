@@ -23,7 +23,7 @@ public class ConversorServlet extends HttpServlet {
         destination.println("<table>");
         destination.println("<tr>");
         destination.println("<th>Celsius</th>");
-        destination.println("<th>Farenheits</th>");
+        destination.println("<th>Fahrenheits</th>");
         destination.println("</tr>");
         for (int temp = p.minimum; temp <= p.maximum; temp += p.increment)
         {
@@ -58,6 +58,8 @@ public class ConversorServlet extends HttpServlet {
     }
 
     protected void getMinimum(HttpServletRequest request, Params p){
+        // String minimum = request.getParameter("min");
+        // p.minimum = (minimum == null) ? -100: Integer.parseInt(minimum);
         try {
             p.minimum = Integer.parseInt(request.getParameter("minimum"));
         } catch (Exception e) {
@@ -91,7 +93,7 @@ public class ConversorServlet extends HttpServlet {
             out.println("<title>C to F converter</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h2>Celsius to Farenheits conversion table</h2>");
+            out.println("<h2>Celsius to Fahrenheits conversion table</h2>");
 
             Params params = new Params();
 
