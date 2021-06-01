@@ -25,11 +25,6 @@ public class ListarController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
 		
-		if(request.getAttribute("listaProfissional") == null) {
-			ProfissionalDAO dao = new ProfissionalDAO();
-			List<Profissional> listaProfissionais =  dao.getAll();
-			request.setAttribute("listaProfissionais", listaProfissionais);
-		}
 		if(request.getSession().getAttribute("clienteLogado") != null) {
 			request.getRequestDispatcher("/logado/usuario/index.jsp").forward(request, response);
 		}

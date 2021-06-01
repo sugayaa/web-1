@@ -13,7 +13,7 @@
 	<h1 align="center">Lista de Profissionais</h1><br>
 	<h2 align="center"> 
 		<a href="/<%=contextPath%>/admin/CRUD/profissional/cadastro">Cadastrar Novo Profissional</a>&nbsp;&nbsp;&nbsp; 
-		<a href="">Sair</a> 
+		<a href="/<%=contextPath%>/logout.jsp">Sair</a> 
 	</h2><br>
 	
 	<div align="center">
@@ -37,7 +37,7 @@
 					<th>${profissional.senha}</th>
 					<th>${profissional.CPF}</th>
 					<th>${profissional.especialidade}</th>
-					<th>${profissional.curriculo}</th>
+					<th><a href="/<%=contextPath%>/curriculo/${profissional.id}_curriculo" target="_blank">Currículo</a></th>
 					<th>${profissional.papel}</th>
 					<th> <a href="/<%=contextPath%>/admin/CRUD/profissional/edicao?id=${profissional.id}">Editar</a>&nbsp;&nbsp;&nbsp;
 					    <a href="/<%=contextPath%>/admin/CRUD/profissional/remove?id=${profissional.id}"

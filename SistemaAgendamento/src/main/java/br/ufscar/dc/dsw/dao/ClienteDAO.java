@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.xdevapi.PreparableStatement;
-
 import br.ufscar.dc.dsw.domain.*;
 
 public class ClienteDAO extends GenericDAO{

@@ -13,7 +13,7 @@
 	<h1 align="center">Lista de Clientes</h1><br>
 	<h2 align="center"> 
 		<a href="/<%=contextPath%>/admin/CRUD/cliente/cadastro">Cadastrar Novo Cliente</a>&nbsp;&nbsp;&nbsp; 
-		<a href="">Sair</a> 
+		<a href="/<%=contextPath%>/logout.jsp">Sair</a> 
 	</h2><br>
 	
 	<div align="center">

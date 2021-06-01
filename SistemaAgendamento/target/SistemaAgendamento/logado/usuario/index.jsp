@@ -16,14 +16,13 @@
 <body>
 	<%
 	   String contextPath = request.getContextPath().replace("/", "");
-	   System.out.println(contextPath);
 	   ProfissionalDAO dao = new ProfissionalDAO();
 	   List<Profissional> listaProfissionais =  dao.getAll();
 	   request.setAttribute("listaProfissionais", listaProfissionais);
 	%>
 	<div align="center">
 		<h1>Profissionais Liberais</h1>
-		<h2> <a href="/<%=contextPath%>/logado/usuario/consultas.jsp">Consultas Marcadas</a>&nbsp;&nbsp;&nbsp;
+		<h2> <a href="/<%=contextPath%>/usuario/mostraConsulta">Consultas Marcadas</a>&nbsp;&nbsp;&nbsp;
 			 <a href="/<%=contextPath%>/logout.jsp">Sair</a>
 		 </h2>
 	</div>
@@ -31,7 +30,6 @@
 		<table border="1">
 			<caption>Lista de profissionais</caption>
 		    <tr>
-		       <th>ID</th>
 		       <th>Nome</th>
 		       <th>Email</th>
 		       <th>Especialidade</th>
@@ -40,12 +38,11 @@
 		    </tr>
 		    <c:forEach var="profissional" items="${requestScope.listaProfissionais}">
 		    	<tr>
-		    	   <th>${profissional.id}</th>
 		    	   <th>${profissional.nome}</th>
 		    	   <th>${profissional.email}</th>
 		    	   <th>${profissional.especialidade}</th>
-		    	   <th>${profissional.curriculo}</th>
-		    	   <th> <a href="">Ver horários  disponíveis</a> &nbsp;&nbsp;&nbsp;<a href="">Marcar Consulta</a> </th>
+		    	   <th><a href="/<%=contextPath%>/curriculo/${profissional.curriculo}" target="_blank">Currículo</a></th>
+		    	   <th><a href="/<%=contextPath%>/usuario/marcarConsulta?id=${profissional.id}">Marcar Consulta</a> </th>
 		    	</tr>
 		    </c:forEach>
 		</table>

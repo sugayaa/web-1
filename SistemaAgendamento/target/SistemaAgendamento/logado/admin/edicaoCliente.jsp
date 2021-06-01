@@ -31,7 +31,7 @@
 				<input type="text" name="papel" value="${cliente.papel}"/><br><br><br>
 				<input type="submit" name="editar" value="Salvar"/>
 				
-				<input type="hidden" name="id", value="${cliente.id}"/>
+				<input type="hidden" name="id" value="${cliente.id}"/>
 			</fieldset>
 		</form>
 	

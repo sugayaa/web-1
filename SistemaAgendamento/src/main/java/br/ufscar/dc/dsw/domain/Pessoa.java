@@ -25,11 +25,15 @@ public abstract class Pessoa {
 		this.papel = papel;
 	}
 	
+	public Pessoa() {
+		
+	}
+	
 	public Long getId() {
 		return this.id;
 	}
 	
-	protected void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -37,7 +41,7 @@ public abstract class Pessoa {
 		return this.nome;
 	}
 	
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
@@ -45,7 +49,7 @@ public abstract class Pessoa {
 		return this.email;
 	}
 	
-	protected void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	
@@ -53,7 +57,7 @@ public abstract class Pessoa {
 		return this.senha;
 	}
 	
-	protected void setSenha(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	
@@ -61,7 +65,7 @@ public abstract class Pessoa {
 		return this.CPF;
 	}
 	
-	protected void setCPF(String CPF) {
+	public void setCPF(String CPF) {
 		this.CPF = CPF;
 	}
 	
@@ -69,7 +73,7 @@ public abstract class Pessoa {
 		return this.papel;
 	}
 	
-	protected void setPapel(String papel) {
+	public void setPapel(String papel) {
 		this.papel = papel;
 	}
 }

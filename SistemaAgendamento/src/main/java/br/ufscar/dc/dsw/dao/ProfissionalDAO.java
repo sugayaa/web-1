@@ -1,18 +1,13 @@
 package br.ufscar.dc.dsw.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
-
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.xdevapi.PreparableStatement;
 
 import br.ufscar.dc.dsw.domain.*;
 
@@ -133,5 +128,83 @@ public class ProfissionalDAO extends GenericDAO{
 			throw new RuntimeException(e);
 		}
 		return profissional;
+	}
+	
+	public Long getMaxId() {
+		String sql = "SELECT max(id) id FROM Profissional";
+		Long id = null;
+		try {
+			Connection conn = this.getConnection();
+			Statement statement = conn.createStatement();
+			ResultSet resultado = statement.executeQuery(sql);
+			if(resultado.next()) {
+				id = resultado.getLong("id");
+			}
+			resultado.close();
+			statement.close();
+			conn.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return id;
+	}
+	public Profissional getByEmail(String email) {
+		String sql = "SELECT * FROM Profissional WHERE email = ?";
+		Profissional profissional = null;
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, email);
+			ResultSet resultado = statement.executeQuery();
+			if(resultado.next()) {
+				Long id = resultado.getLong("id");
+				String nome = resultado.getString("nome");
+				String senha = resultado.getString("senha");
+				String CPF = resultado.getString("CPF");
+				String especialidade = resultado.getString("especialidade");
+				String curriculo = resultado.getString("curriculo");
+				String papel = resultado.getString("papel");
+				
+				profissional = new Profissional(id, nome, email, senha, CPF, especialidade, curriculo, papel);
+			}
+			resultado.close();
+			statement.close();
+			conn.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		return profissional;
+	}
+	
+	public List<Profissional> getAll(String nomeEspecialidade){
+		String sql = "SELECT * FROM Profissional WHERE especialidade LIKE ?";
+		List<Profissional> listaProfissionais = new ArrayList<Profissional>();
+		try {
+			Connection conn = this.getConnection();
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, "%"+ nomeEspecialidade + "%");
+			ResultSet resultado = statement.executeQuery();
+			while(resultado.next()) {
+				Long id = resultado.getLong("id");
+				String nome = resultado.getString("nome");
+				String email = resultado.getString("email");
+				String senha = resultado.getString("senha");
+				String CPF = resultado.getString("CPF");
+				String especialidade = resultado.getString("especialidade");
+				String curriculo = resultado.getString("curriculo");
+				String papel = resultado.getString("papel");
+				
+				Profissional profissional = new Profissional(id, nome, email, senha, CPF, especialidade, curriculo, papel);
+				listaProfissionais.add(profissional);
+			}
+			resultado.close();
+			statement.close();
+			conn.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println("listaProfissional = "+listaProfissionais);
+		return listaProfissionais;
 	}
 }

@@ -1,17 +1,22 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletSecurityElement;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
 import br.ufscar.dc.dsw.dao.ProfissionalDAO;
@@ -105,6 +110,10 @@ public class AdminController extends HttpServlet {
 			throws ServletException, IOException{
 		ProfissionalDAO dao = new ProfissionalDAO();
 		dao.delete(Long.parseLong(request.getParameter("id")));
+		String uploadPath = getServletContext().getRealPath("") + File.separator + "curriculo";
+		String filePath = uploadPath + File.separator + request.getParameter("id") +"_curriculo";
+		File file  = new File(filePath);
+		file.delete();
 		response.sendRedirect("listaProfissional");
 	}
 	
@@ -130,18 +139,54 @@ public class AdminController extends HttpServlet {
 	
 	protected void atualizaProfissional(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
-		Long id = Long.parseLong(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
-		String CPF = request.getParameter("CPF");
-		String especialidade = request.getParameter("especialidade");
-		String curriculo = request.getParameter("curriculo");
-		String papel = request.getParameter("papel");
 		
-		ProfissionalDAO dao = new ProfissionalDAO();
-		Profissional profissional = new Profissional(id, nome, email, senha, CPF, especialidade, curriculo, papel);
-		dao.update(profissional);
+		if(ServletFileUpload.isMultipartContent(request)) {
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			factory.setSizeThreshold(1024*1024*3);
+			factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+			
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			upload.setFileSizeMax(1024*1024*40);
+			upload.setSizeMax(1024*1024*50);
+			String uploadPath = getServletContext().getRealPath("") + File.separator + "curriculo";
+			File uploadDir = new File(uploadPath);
+			if(!uploadDir.exists())
+				uploadDir.mkdir();
+			
+			try {
+				ProfissionalDAO dao = new ProfissionalDAO();
+				String filePath = null;
+				Profissional profissional = new Profissional();
+				List<FileItem> formItems = upload.parseRequest(request);
+				HashMap<String, String> field = new HashMap<String, String>();
+				if(formItems != null && formItems.size() > 0) {
+					for(FileItem item : formItems) {
+						if(!item.isFormField() && field.get("id") != null && item.getSize() != 0) {
+							filePath = uploadPath + File.separator + field.get("id") +"_curriculo";
+							File storeFile  = new File(filePath);
+							item.write(storeFile);
+						}
+						else {
+							String fieldName = item.getFieldName();
+							String fieldValue = item.getString();
+							field.put(fieldName, fieldValue);
+						}
+					}
+				}
+				profissional.setId(Long.parseLong(field.get("id")));
+				profissional.setNome(field.get("nome"));
+				profissional.setEmail(field.get("email"));
+				profissional.setSenha(field.get("senha"));
+				profissional.setCPF(field.get("CPF"));
+				profissional.setEspecialidade(field.get("especialidade"));
+				profissional.setCurriculo(field.get("id") +"_curriculo");
+				profissional.setPapel("profi");
+				dao.update(profissional);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
 		response.sendRedirect("listaProfissional");
 	}
 	
@@ -176,17 +221,59 @@ public class AdminController extends HttpServlet {
 	
 	protected void insereProfissional(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
-		String CPF = request.getParameter("CPF");
-		String especialidade = request.getParameter("especialidade");
-		String curriculo = request.getParameter("curriculo");
-		String papel = request.getParameter("papel");
+		if(ServletFileUpload.isMultipartContent(request)) {
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			factory.setSizeThreshold(1024*1024*3);
+			factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+			
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			upload.setFileSizeMax(1024*1024*40);
+			upload.setSizeMax(1024*1024*50);
+			
+			String uploadPath = getServletContext().getRealPath("") + File.separator + "curriculo";
+			File uploadDir = new File(uploadPath);
+			if(!uploadDir.exists())
+				uploadDir.mkdir();
+			try {
+				ProfissionalDAO dao = new ProfissionalDAO();
+				String filePath = null;
+				Profissional profissional_aux = new Profissional();
+				dao.insert(profissional_aux);
+				Long id = dao.getMaxId();
+				if(id != null) {
+					System.out.println("id = "+id);
+				}
+				List<FileItem> formItems = upload.parseRequest(request);
+				HashMap<String, String> field = new HashMap<String, String>();
+				if(formItems != null && formItems.size() > 0) {
+					for(FileItem item : formItems) {
+						if(!item.isFormField()) {
+							filePath = uploadPath + File.separator + id +"_curriculo";
+							System.out.println("fiePath = "+filePath);
+							File storeFile  = new File(filePath);
+							item.write(storeFile);
+						}
+						else {
+							String fieldName = item.getFieldName();
+							String fieldValue = item.getString();
+							field.put(fieldName, fieldValue);
+						}
+					}
+				}
+				System.out.println("filepath = "+filePath);
+				Profissional profissional = new Profissional(field.get("nome"), field.get("email"), field.get("senha"), field.get("CPF"), 
+						                   field.get("especialidade"), id.toString()+"_curriculo", field.get("papel"));
+				id = dao.getMaxId();
+				profissional.setCurriculo(id.toString()+"_curriculo");
+				profissional.setId(id);
+				dao.update(profissional);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}	
 		
-		ProfissionalDAO dao = new ProfissionalDAO();
-		Profissional profissional = new Profissional(nome, email, senha, CPF, especialidade, curriculo, papel);
-		dao.insert(profissional);
 		response.sendRedirect("listaProfissional");
 	}
 }

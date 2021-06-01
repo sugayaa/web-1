@@ -16,6 +16,10 @@ public class Profissional extends Pessoa{
 		this.curriculo = curriculo;
 	}
 	
+	public Profissional() {
+		super();
+	}
+	
 	public String getEspecialidade() {
 		return this.especialidade;
 	}
@@ -30,5 +34,10 @@ public class Profissional extends Pessoa{
 	
 	public void setCurriculo(String curriculo) {
 		this.curriculo = curriculo;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getNome() +"/"+ this.getEmail()+"/"+especialidade+"/"+curriculo;
 	}
 }

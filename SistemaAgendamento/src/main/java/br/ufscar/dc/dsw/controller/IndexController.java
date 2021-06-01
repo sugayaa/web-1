@@ -16,7 +16,7 @@ import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.utill.Erros;
 
-@WebServlet(urlPatterns = {"/index.jsp"})
+@WebServlet(urlPatterns = {"/index.jsp", "/logout.jsp"})
 public class IndexController extends HttpServlet{
 	
 	@Override
@@ -41,7 +41,8 @@ public class IndexController extends HttpServlet{
 			if(!erros.isExisteErro()) {
 				ClienteDAO dao = new ClienteDAO();
 				Cliente cliente = dao.getByEmail(email);
-				if(cliente.getEmail() != null) {
+				
+				if(cliente != null) {
 					if(cliente.getSenha().equals(senha)) {
 						if(cliente.getPapel().equals("user")) {
 							request.getSession().setAttribute("clienteLogado", cliente);
@@ -58,7 +59,23 @@ public class IndexController extends HttpServlet{
 					}
 				}
 				else {
-					erros.add("Usuário não encontrado");
+					ProfissionalDAO dao2 = new ProfissionalDAO();
+					Profissional profissional = dao2.getByEmail(email);
+					
+					if(profissional != null) {
+						if(profissional.getSenha().equals(senha)) {
+							if(profissional.getPapel().equals("profi")) {
+								request.getSession().setAttribute("clienteLogado", profissional);
+								response.sendRedirect("profissional/");
+							}
+							return;
+						}
+						else {
+							erros.add("Senha inválida");
+						}
+					}
+					else
+						erros.add("Usuário não encontrado");
 				}
 			}
 		}
