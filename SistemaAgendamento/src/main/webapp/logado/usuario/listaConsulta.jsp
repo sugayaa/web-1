@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Consultas Marcadas</title>
+   <title><fmt:message key="listaCP.title"/></title>
 </head>
 <body>
 	<%
@@ -15,19 +16,19 @@
 	   
 	%>
 	<div align="center">
-		<h1>Lista de Consultas Marcadas</h1>
-		<h2> <a href="/<%=contextPath%>/usuario">Marcar Nova Consulta</a>&nbsp;&nbsp;&nbsp;
-			 <a href="/<%=contextPath%>/logout.jsp">Sair</a>
+		<h1><fmt:message key="listaCP.title"/></h1>
+		<h2> <a href="/<%=contextPath%>/usuario"><fmt:message key="listaCC.new"/></a>&nbsp;&nbsp;&nbsp;
+			 <a href="/<%=contextPath%>/logout.jsp"><fmt:message key="listaCP.logout"/></a>
 		 </h2>
 	</div>
 	<div align="center">
 		<table border="1">
-			<caption>Lista de consultas</caption>
+			<caption><fmt:message key="listaCP.list"/></caption>
 		    <tr>
-		       <th>Nome do Profissional</th>
-		       <th>Data</th>
-		       <th>Horário</th>
-		       <th>Link para Reunião</th>
+		       <th><fmt:message key="listaCC.profName"/></th>
+		       <th><fmt:message key="listaCP.date"/></th>
+		       <th><fmt:message key="listaCP.hour"/></th>
+		       <th><fmt:message key="listaCP.link"/></th>
 		    </tr>
 		    <c:forEach var="consulta" items="${requestScope.listaConsulta}">
 		    	<tr>
