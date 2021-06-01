@@ -8,7 +8,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title><fmt:message key="cadastro.bar"/></title>
+	<title>
+			<%-- Para mudar a lingua da página, adicione '?lingua=en_US' após o site.jsp --%>
+		<c:if test="${not empty param.lingua}">
+  			<fmt:setLocale value="${param.lingua}" scope="session"/>
+		</c:if>
+		<fmt:message key="cadastro.bar"/>
+	</title>
 	<script type="text/javascript" src="js/alteraForms.js"></script>
 </head>
 <body>

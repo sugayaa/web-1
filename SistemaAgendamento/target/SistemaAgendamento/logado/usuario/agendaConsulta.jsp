@@ -11,7 +11,7 @@
 <title><fmt:message key="agendamento.bar"/></title>
 </head>
 <body>
-	<h1 align="center"><fmt:message key="agendamento.tile"/> ${profissional.nome}</h1>
+	<h1 align="center"><fmt:message key="agendamento.title"/> ${profissional.nome}</h1>
 	<c:if test="${mensagem.existeErro}">
 		<div id=erro>
 		  <ul>

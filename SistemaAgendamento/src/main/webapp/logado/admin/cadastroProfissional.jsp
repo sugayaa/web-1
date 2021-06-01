@@ -15,7 +15,7 @@
 		<form action="insere" method="POST" enctype="multipart/form-data">
 			<fieldset>
 				<input type="hidden" name="papel" value="profi"/>
-				<label><fmt:message key="cadastro.nome"/></label>&nbsp;&nbsp;
+				<label><fmt:message key="cadastro.name"/></label>&nbsp;&nbsp;
 				<input type="text" name="nome" /><br><br>
 				<label><fmt:message key="cadastro.email"/></label>&nbsp;&nbsp;
 				<input type="email" name="email" /><br><br>

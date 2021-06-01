@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>
-		<%-- Para mudar a lingua da página, adicione 'lingua=en_US' após o site.jsp --%>
+		<%-- Para mudar a lingua da página, adicione '?lingua=en_US' após o site.jsp --%>
 		<c:if test="${not empty param.lingua}">
   			<fmt:setLocale value="${param.lingua}" scope="session"/>
 		</c:if>
