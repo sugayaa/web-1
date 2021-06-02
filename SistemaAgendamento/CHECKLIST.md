@@ -1,4 +1,4 @@
-Membros em ordem alfabética.\
+Membros em ordem alfabética.
 
 R1. Implementado\
     - M3(100%)\
@@ -15,4 +15,5 @@ R6. Implementado\
 R7. Implementado\
     - M1(100%)\
 R8. Implementado\
-    - M1(100%)\
+    - M1(100%)
+
