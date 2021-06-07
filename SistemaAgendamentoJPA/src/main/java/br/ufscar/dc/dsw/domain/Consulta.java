@@ -48,7 +48,6 @@ public class Consulta {
             String data,
             String horario,
             String url,
-            Editora editora,
             Cliente cliente,
             Profissional profissional
             ) 
@@ -57,7 +56,7 @@ public class Consulta {
         this.data = data;
         this.horario = horario;
         this.url = url;
-        this.editora = editora;
+        this.cliente = cliente;
         this.profissional = profissional;
     }
 
