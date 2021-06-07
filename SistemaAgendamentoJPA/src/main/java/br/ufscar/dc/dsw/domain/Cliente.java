@@ -27,6 +27,41 @@ public class Cliente extends Pessoa{
     @OneToMany(mappedBy = "cliente")
     private List<Consulta> consultas;
 
+    public Cliente(
+            String nome,
+            String email,
+            String senha,
+            String CPF,
+            String sexo,
+            String papel,
+            String dataNascimento,
+            String telefone
+            )
+    {
+        super(nome, email, senha, CPF, sexo, papel); 
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.consultas = new List<Consulta>;
+    }
+
+    public Cliente(
+            String nome,
+            String email,
+            String senha,
+            String CPF,
+            String sexo,
+            String papel,
+            String dataNascimento,
+            String telefone,
+            List<Consulta> consultas
+            )
+    {
+        super(nome, email, senha, CPF, sexo, papel); 
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.consultas = consultas;
+    }
+
     public Long getDataNascimento() {
         return dataNascimento;
     }

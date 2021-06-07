@@ -33,10 +33,6 @@ public class Consulta {
     @Column(nullable = false, length = 30)
     private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "editora_id")
-    private Editora editora;
-
     @NotNull(message = "{NotNull.consulta.cliente}")
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -46,6 +42,24 @@ public class Consulta {
     @ManyToOne
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
+
+    public Consulta(
+            String nome,
+            String data,
+            String horario,
+            String url,
+            Editora editora,
+            Cliente cliente,
+            Profissional profissional
+            ) 
+    {
+        this.nome = nome;
+        this.data = data;
+        this.horario = horario;
+        this.url = url;
+        this.editora = editora;
+        this.profissional = profissional;
+    }
 
     public Long getId() {
         return id;

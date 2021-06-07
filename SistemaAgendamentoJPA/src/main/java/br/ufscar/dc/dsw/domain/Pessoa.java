@@ -38,11 +38,12 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email, String senha, String CPF, String papel) {
+    public Pessoa(String nome, String email, String senha, String CPF, String sexo, String papel) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.CPF = CPF;
+        this.sexo = sexo;
         this.papel = papel;
     }
 

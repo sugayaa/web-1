@@ -27,6 +27,41 @@ public class Profssional extends Pessoa{
     @OneToMany(mappedBy = "profissional")
     private List<Consulta> consultas;
 
+    public Profssional(
+            String nome,
+            String email,
+            String senha,
+            String CPF,
+            String sexo,
+            String papel,
+            String especialidade,
+            String curriculo
+            )
+    {
+        super(nome, email, senha, CPF, sexo, papel); 
+        this.especialidade = especialidade;
+        this.curriculo = curriculo;
+        this.consultas = new List<Consulta>;
+    }
+
+    public Profssional(
+            String nome,
+            String email,
+            String senha,
+            String CPF,
+            String sexo,
+            String papel,
+            String especialidade,
+            String curriculo,
+            List<Consulta> consultas
+            )
+    {
+        super(nome, email, senha, CPF, sexo, papel); 
+        this.especialidade = especialidade;
+        this.curriculo = curriculo;
+        this.consultas = consultas;
+    }
+
     public Long getEspecialidade() {
         return especialidade;
     }
