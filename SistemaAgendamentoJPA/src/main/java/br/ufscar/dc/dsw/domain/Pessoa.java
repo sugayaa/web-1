@@ -2,58 +2,43 @@ package br.ufscar.dc.dsw.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa {
+public abstract class Pessoa extends AbstractEntity<Long> {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-
+    @NotBlank
     @Column(nullable = false, unique = false, length = 60)
     private String nome;
 
+    @NotBlank
     @Column(nullable = false, unique = true, length = 60)
     private String email;
 
+    @NotBlank
     @Column(nullable = false, unique = false, length = 60)
     private String senha;
 
+    @NotBlank
     @Column(nullable = false, unique = true, length = 15)
     private String CPF;
 
+    @NotBlank
     @Column(nullable = false, unique = false, length = 10)
     private String sexo;
 
+    @NotBlank
     @Column(nullable = false, unique = false, length = 60)
     private String papel;
-
-    public Pessoa() {
-    }
-
-    public Pessoa(String nome, String email, String senha, String CPF, String sexo, String papel) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.CPF = CPF;
-        this.sexo = sexo;
-        this.papel = papel;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

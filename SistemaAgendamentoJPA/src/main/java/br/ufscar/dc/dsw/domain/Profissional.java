@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
@@ -17,50 +18,18 @@ import org.springframework.format.annotation.NumberFormat.Style;
 public class Profssional extends Pessoa{
 
     // Change to number and format ?
+    @NotBlank
     @Column(nullable = false, unique = false, length = 40)
     private String especialidade;
 
     // Change to number and format ?
+    @NotBlank
     @Column(nullable = false, unique = true, length = 20)
     private String curriculo;
 
     @OneToMany(mappedBy = "profissional")
     private List<Consulta> consultas;
 
-    public Profssional(
-            String nome,
-            String email,
-            String senha,
-            String CPF,
-            String sexo,
-            String papel,
-            String especialidade,
-            String curriculo
-            )
-    {
-        super(nome, email, senha, CPF, sexo, papel); 
-        this.especialidade = especialidade;
-        this.curriculo = curriculo;
-        this.consultas = new List<Consulta>;
-    }
-
-    public Profssional(
-            String nome,
-            String email,
-            String senha,
-            String CPF,
-            String sexo,
-            String papel,
-            String especialidade,
-            String curriculo,
-            List<Consulta> consultas
-            )
-    {
-        super(nome, email, senha, CPF, sexo, papel); 
-        this.especialidade = especialidade;
-        this.curriculo = curriculo;
-        this.consultas = consultas;
-    }
 
     public Long getEspecialidade() {
         return especialidade;

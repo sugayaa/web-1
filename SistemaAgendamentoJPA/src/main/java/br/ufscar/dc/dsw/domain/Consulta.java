@@ -11,15 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "Consulta")
 public class Consulta {
-
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false, unique = false, length = 60)
     private String nome;
@@ -43,30 +41,6 @@ public class Consulta {
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
 
-    public Consulta(
-            String nome,
-            String data,
-            String horario,
-            String url,
-            Cliente cliente,
-            Profissional profissional
-            ) 
-    {
-        this.nome = nome;
-        this.data = data;
-        this.horario = horario;
-        this.url = url;
-        this.cliente = cliente;
-        this.profissional = profissional;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

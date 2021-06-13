@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
@@ -17,50 +18,18 @@ import org.springframework.format.annotation.NumberFormat.Style;
 public class Cliente extends Pessoa{
 
     // Change to number and format ?
+    @NotBlank
     @Column(nullable = false, unique = false, length = 12)
     private String dataNascimento;
 
     // Change to number and format ?
+    @NotBlank
     @Column(nullable = false, unique = true, length = 20)
     private String telefone;
 
     @OneToMany(mappedBy = "cliente")
     private List<Consulta> consultas;
 
-    public Cliente(
-            String nome,
-            String email,
-            String senha,
-            String CPF,
-            String sexo,
-            String papel,
-            String dataNascimento,
-            String telefone
-            )
-    {
-        super(nome, email, senha, CPF, sexo, papel); 
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-        this.consultas = new List<Consulta>;
-    }
-
-    public Cliente(
-            String nome,
-            String email,
-            String senha,
-            String CPF,
-            String sexo,
-            String papel,
-            String dataNascimento,
-            String telefone,
-            List<Consulta> consultas
-            )
-    {
-        super(nome, email, senha, CPF, sexo, papel); 
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-        this.consultas = consultas;
-    }
 
     public Long getDataNascimento() {
         return dataNascimento;
