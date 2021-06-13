@@ -14,4 +14,6 @@ public class IClienteService {
 
     List<Cliente> buscarTodos();
 
+    boolean clienteTemConsultas(Long id);
+
 }

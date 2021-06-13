@@ -31,4 +31,9 @@ public class ClienteService implements IClienteService {
         return dao.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public boolean clienteTemConsultas(Long id) {
+        return !dao.findById(id.longValue()).getConsultas().isEmpty();
+    }
+
 }

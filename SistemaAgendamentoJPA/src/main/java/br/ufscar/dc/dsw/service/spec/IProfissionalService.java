@@ -6,12 +6,14 @@ import br.ufscar.dc.dsw.domain.Profissional;
 
 public class IProfissionalService {
 
-    public void salvar(Profissional profissional);
+    void salvar(Profissional profissional);
 
-    public void excluir(Long id);
+    void excluir(Long id);
 
-    public Profissional buscarPorId(Long id);
+    Profissional buscarPorId(Long id);
 
-    public List<Profissional> buscarTodos();
+    List<Profissional> buscarTodos();
+
+    boolean profissionalTemConsultas(Long id);
 
 }
