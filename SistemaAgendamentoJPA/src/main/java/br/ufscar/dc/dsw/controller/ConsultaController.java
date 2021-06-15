@@ -25,7 +25,7 @@ import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 
 @Controller
 @RequestMapping("/consultas")
-public class ConsultasController {
+public class ConsultaController {
 
     @Autowired
     private IConsultaService service;
