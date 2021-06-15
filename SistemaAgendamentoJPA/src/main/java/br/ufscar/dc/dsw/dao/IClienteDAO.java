@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Consulta;
 
-@SupressWarnings("unchecked")
+@SuppressWarnings("unchecked")
 public interface IClienteDAO extends CrudRepository<Cliente, Long> {
     Cliente findByConsulta(Consulta consulta);
     Cliente findById(Long id);

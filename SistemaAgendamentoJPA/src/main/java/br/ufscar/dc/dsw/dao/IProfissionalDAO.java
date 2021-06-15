@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Consulta;
 
-@Supress
+@SuppressWarnings("unchecked")
 public interface IProfissionalDAO extends CrudRepository<Profissional, Long> {
     Profissional findByConsulta(Consulta consulta);
     Profissional findById(Long id);
