@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.domain.Profissional;
  
-public class ProfissionalDetailsServiceImpl implements UserDetailsService {
+public class ProfissionalDetailsServiceImplementation implements UserDetailsService {
  
     @Autowired
     private IProfissionalDAO dao;

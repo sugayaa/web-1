@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
  
-public class ClienteDetailsServiceImpl implements UserDetailsService {
+public class ClienteDetailsServiceImplementation implements UserDetailsService {
  
     @Autowired
     private IClienteDAO dao;
