@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
+import java.util.List;
+
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;

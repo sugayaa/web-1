@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @SuppressWarnings("serial")
-@MappedSuperclasspublic abstract class AbstractEntity<ID extends Serializable> implements Serializable {
+@MappedSuperclass
+public abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
