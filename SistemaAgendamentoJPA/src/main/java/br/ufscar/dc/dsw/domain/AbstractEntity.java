@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @SuppressWarnings("serial")
-@MappedSuperclasspublic abstract lass AbstractEntity<ID extends Serializable> implements Serializable {
+@MappedSuperclasspublic abstract class AbstractEntity<ID extends Serializable> implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ import javax.persistence.MappedSuperclass;
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false
+            return false;
         return true;
     }
 
