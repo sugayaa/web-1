@@ -15,7 +15,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "Profissional")
-public class Profssional extends Pessoa{
+public class Profissional extends Pessoa{
 
     // Change to number and format ?
     @NotBlank
