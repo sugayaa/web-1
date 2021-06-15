@@ -12,10 +12,11 @@ import br.ufscar.dc.dsw.domain.Consulta;
 @SuppressWarnings("unchecked")
 public interface IClienteDAO extends CrudRepository<Cliente, Long> {
     Cliente findByConsulta(Consulta consulta);
-    Cliente findById(Long id);
+    Cliente findById(long id);
     Cliente save(Cliente cliente);
-    void deleteById(Long id);
+    List<Cliente> findAll();
+    void deleteById(long id);
 
-    @Query("SELECT c FROM Cliente c WHERE c.username = :username")
-    public Cliente getUserByUsername(@Param("username") String username);
+    @Query("SELECT c FROM Cliente c WHERE c.email = :email")
+    public Cliente getUserByUsername(@Param("email") String email);
 }

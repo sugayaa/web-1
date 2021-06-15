@@ -2,7 +2,11 @@ package br.ufscar.dc.dsw.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 
@@ -22,7 +26,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Transactional(readOnly = true)
-    public Usuario buscarPorId(Long id) {
+    public Cliente buscarPorId(Long id) {
         return dao.findById(id.longValue());
     }
 

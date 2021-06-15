@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.ufscar.dc.dsw.domain.Profissional;
 
-public class IProfissionalService {
+public interface IProfissionalService {
 
     void salvar(Profissional profissional);
 

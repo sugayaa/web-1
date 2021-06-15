@@ -48,7 +48,7 @@ public abstract class Pessoa extends AbstractEntity<Long> {
         this.nome = nome;
     }
 
-    public long getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -56,7 +56,7 @@ public abstract class Pessoa extends AbstractEntity<Long> {
         this.email = email;
     }
 
-    public long getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -64,7 +64,7 @@ public abstract class Pessoa extends AbstractEntity<Long> {
         this.senha = senha;
     }
 
-    public long getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
@@ -80,7 +80,7 @@ public abstract class Pessoa extends AbstractEntity<Long> {
         this.sexo = sexo;
     }
 
-    public long getPapel() {
+    public String getPapel() {
         return papel;
     }
 
@@ -94,7 +94,7 @@ public abstract class Pessoa extends AbstractEntity<Long> {
         sb.append("[");
         sb.append("Nome: " + nome + ", ");
         sb.append("email: " + email + ", ");
-        sb.append("cpf: " + cpf + ", ");
+        sb.append("cpf: " + CPF + ", ");
         sb.append("sexo: " + sexo + ", ");
         sb.append("papel: " + papel + ", ");
         sb.append("]");

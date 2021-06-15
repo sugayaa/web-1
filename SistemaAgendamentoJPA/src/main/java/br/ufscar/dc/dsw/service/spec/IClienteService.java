@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.ufscar.dc.dsw.domain.Cliente;
 
-public class IClienteService {
+public interface IClienteService {
 
     void salvar(Cliente cliente);
 

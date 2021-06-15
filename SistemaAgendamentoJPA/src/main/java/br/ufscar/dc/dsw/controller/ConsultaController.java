@@ -19,6 +19,7 @@ import br.ufscar.dc.dsw.domain.Consulta;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.security.ClienteDetails;
+import br.ufscar.dc.dsw.security.ProfissionalDetails;
 import br.ufscar.dc.dsw.service.spec.IConsultaService;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
@@ -38,8 +39,9 @@ public class ConsultaController {
 
     @GetMapping("/cadastrar")
     public String cadastrar(Consulta consulta) {
-        compra.setUsuario(this.getCliente());
-        compra.setData("15/06/2021");
+        consulta.setCliente(this.getCliente());
+        consulta.setProfissional(this.getProfissional());
+        consulta.setData("15/06/2021");
         //compra.setValor(compra.getLivro().getPreco());
         return "consulta/cadastro";
     }
@@ -47,6 +49,11 @@ public class ConsultaController {
     private Cliente getCliente() {
         ClienteDetails clienteDetails = (ClienteDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return clienteDetails.getCliente();
+    }
+
+    private Profissional getProfissional() {
+        ProfissionalDetails profissionalDetails = (ProfissionalDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return profissionalDetails.getProfissional();
     }
 
     @GetMapping("/listar")
@@ -61,9 +68,9 @@ public class ConsultaController {
     public String salvar(Consulta consulta, BindingResult result, RedirectAttributes attr) {
 
         String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
-        consulta.setUsuario(this.getCliente());
+        consulta.setCliente(this.getCliente());
+        consulta.setProfissional(this.getProfissional());
         consulta.setData(data);
-        // consulta.setValor(compra.getLivro().getPreco());
 
         service.salvar(consulta);
         attr.addFlashAttribute("sucess", "Consulta inserida com sucesso.");

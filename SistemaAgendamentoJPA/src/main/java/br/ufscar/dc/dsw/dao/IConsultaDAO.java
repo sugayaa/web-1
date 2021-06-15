@@ -11,10 +11,10 @@ import br.ufscar.dc.dsw.domain.Profissional;
 @SuppressWarnings("unchecked")
 public interface IConsultaDAO extends CrudRepository<Consulta, Long> {
 
-    List<Consulta> findByCliente(Cliente cliente);
-    List<Consulta> findByProfissional(Profissional profissional);
-    Consulta findById(Long id);
-    void save(Consulta consulta);
-    void deleteById(Long id);
+    List<Consulta> findAllByCliente(Cliente cliente);
+    List<Consulta> findAllByProfissional(Profissional profissional);
+    Consulta findById(long id);
+    Consulta save(Consulta consulta);
+    void deleteById(long id);
 
 }

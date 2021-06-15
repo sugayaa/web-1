@@ -30,12 +30,12 @@ public class ConsultaService implements IConsultaService {
 
     @Transactional(readOnly = true)
     public List<Consulta> buscarTodos(Cliente c) {
-        return dao.findAllByUsuario(c);
+        return dao.findAllByCliente(c);
     }
 
     @Transactional(readOnly = true)
     public List<Consulta> buscarTodos(Profissional p) {
-        return dao.findAllByUsuario(p);
+        return dao.findAllByProfissional(p);
     }
 }
 

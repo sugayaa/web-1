@@ -33,7 +33,7 @@ public class Profissional extends Pessoa{
     private List<Consulta> consultas;
 
 
-    public Long getEspecialidade() {
+    public String getEspecialidade() {
         return especialidade;
     }
 

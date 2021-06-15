@@ -17,7 +17,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "Cliente")
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
     // Change to number and format ?
     @NotBlank
@@ -33,7 +33,7 @@ public class Cliente extends Pessoa{
     private List<Consulta> consultas;
 
 
-    public Long getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
@@ -64,7 +64,7 @@ public class Cliente extends Pessoa{
         sb.append("Nome: " + this.getNome() + ", ");
         sb.append("data nascimento: " + dataNascimento + ", ");
         sb.append("telefone: " + telefone + ", ");
-        sb.append("sexo: " + sexo + ", ");
+        sb.append("sexo: " + this.getSexo() + ", ");
         sb.append("]");
         return sb.toString(); 
     }

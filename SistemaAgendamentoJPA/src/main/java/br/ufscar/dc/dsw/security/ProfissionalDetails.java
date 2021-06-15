@@ -20,7 +20,7 @@ public class ProfissionalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(profissional.getRole());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(profissional.getPapel());
         return Arrays.asList(authority);
     }
 
@@ -31,7 +31,7 @@ public class ProfissionalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return profissional.getNome();
+        return profissional.getEmail();
     }
 
     @Override

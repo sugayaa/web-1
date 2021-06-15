@@ -20,7 +20,7 @@ public class ClienteDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(cliente.getRole());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(cliente.getPapel());
         return Arrays.asList(authority);
     }
 
@@ -31,7 +31,7 @@ public class ClienteDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return cliente.getNome();
+        return cliente.getEmail();
     }
 
     @Override

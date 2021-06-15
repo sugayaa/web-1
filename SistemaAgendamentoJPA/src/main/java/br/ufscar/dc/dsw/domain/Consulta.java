@@ -74,19 +74,19 @@ public class Consulta {
         this.url = url;
     }
 
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(String cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public String getProfissional() {
+    public Profissional getProfissional() {
         return profissional;
     }
 
-    public void setProfissional(String profissional) {
+    public void setProfissional(Profissional profissional) {
         this.profissional = profissional;
     }
 
