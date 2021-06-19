@@ -15,9 +15,14 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Consulta")
 public class Consulta {
+	
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, unique = false, length = 60)
     private String nome;

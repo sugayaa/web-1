@@ -19,6 +19,11 @@
                                 </div>
                             </form>
                         </div>
+                        <div style='right:200px; position: absolute'>
+                        	<form th:action="@{/listar}" method="get">
+                        		<button type="submit" class="btn btn-dark navbar-toggle" th:text="#{profissional.listar.label}"></button>
+                        	</form>
+                        </div>
                         <div style="right: 100px; position: absolute">
                             <a th:href="@{''(lang=pt)}"><img alt=""
                                                              th:src="@{/image/Brasil.gif}" style="width: 30px;" /></a> <a

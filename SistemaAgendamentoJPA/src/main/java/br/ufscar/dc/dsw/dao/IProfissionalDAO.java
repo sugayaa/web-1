@@ -11,7 +11,7 @@ import br.ufscar.dc.dsw.domain.Consulta;
 
 @SuppressWarnings("unchecked")
 public interface IProfissionalDAO extends CrudRepository<Profissional, Long> {
-    Profissional findByConsulta(Consulta consulta);
+    //Profissional findByConsulta(Consulta consulta);
     Profissional findById(long id);
     List<Profissional> findByEspecialidade(String especialidade);
     Profissional save(Profissional profissional);
@@ -19,5 +19,5 @@ public interface IProfissionalDAO extends CrudRepository<Profissional, Long> {
     List<Profissional> findAll();
 
     @Query("SELECT p FROM Profissional p WHERE p.email = :email")
-    public Profissional getUserByUsername(@Param("email") String email);
+    public Profissional getProfissionalByEmail(@Param("email") String email);
 }

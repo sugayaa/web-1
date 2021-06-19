@@ -15,11 +15,17 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Cliente")
-public class Cliente extends Pessoa {
+public class Cliente extends AbstractEntity{
 
     // Change to number and format ?
+	
+    @NotBlank
+    @Column(nullable = false, unique = false, length = 10)
+    private String sexo;
+    
     @NotBlank
     @Column(nullable = false, unique = false, length = 12)
     private String dataNascimento;
@@ -32,7 +38,14 @@ public class Cliente extends Pessoa {
     @OneToMany(mappedBy = "cliente")
     private List<Consulta> consultas;
 
+    public String getSexo() {
+        return sexo;
+    }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
     public String getDataNascimento() {
         return dataNascimento;
     }
@@ -64,7 +77,7 @@ public class Cliente extends Pessoa {
         sb.append("Nome: " + this.getNome() + ", ");
         sb.append("data nascimento: " + dataNascimento + ", ");
         sb.append("telefone: " + telefone + ", ");
-        sb.append("sexo: " + this.getSexo() + ", ");
+        sb.append("sexo: " + sexo + ", ");
         sb.append("]");
         return sb.toString(); 
     }

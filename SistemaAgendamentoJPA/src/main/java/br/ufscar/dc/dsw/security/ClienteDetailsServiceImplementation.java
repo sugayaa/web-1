@@ -16,7 +16,7 @@ public class ClienteDetailsServiceImplementation implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String nome)
             throws UsernameNotFoundException {
-        Cliente cliente = dao.getUserByUsername(nome);
+        Cliente cliente = dao.getClienteByEmail(nome);
          
         if (cliente == null) {
             throw new UsernameNotFoundException("Cliente não foi encontrado.");

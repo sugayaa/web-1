@@ -15,9 +15,10 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Profissional")
-public class Profissional extends Pessoa{
+public class Profissional extends AbstractEntity{
 
     // Change to number and format ?
     @NotBlank

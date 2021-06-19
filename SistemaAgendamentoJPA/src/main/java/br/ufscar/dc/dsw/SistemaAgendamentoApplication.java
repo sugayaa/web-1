@@ -1,6 +1,4 @@
-package br.ufscar.dc.dsw.SistemaAgendamento;
-
-import java.math.BigDecimal;
+package br.ufscar.dc.dsw;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +11,6 @@ import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.dao.IConsultaDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Profissional;
-import br.ufscar.dc.dsw.domain.Consulta;
 
 @SpringBootApplication
 public class SistemaAgendamentoApplication {
@@ -33,6 +30,7 @@ public class SistemaAgendamentoApplication {
             c1.setNome("Administrador");
             c1.setTelefone("1103948291");
             c1.setDataNascimento("01/01/1990");
+            c1.setSexo("Feminino");
             c1.setPapel("ROLE_ADMIN");
             clienteDAO.save(c1);
 
@@ -43,6 +41,7 @@ public class SistemaAgendamentoApplication {
             c2.setNome("Beltrano Andrade");
             c2.setTelefone("1133948291");
             c2.setDataNascimento("02/01/1990");
+            c2.setSexo("Masculino");
             c2.setPapel("ROLE_USER");
             clienteDAO.save(c2);
 
@@ -52,29 +51,41 @@ public class SistemaAgendamentoApplication {
             c3.setCPF("367.318.380-04");
             c3.setTelefone("1173948291");
             c3.setDataNascimento("03/01/1990");
+            c3.setSexo("Masculino");
             c3.setNome("Fulano Silva");
             c3.setPapel("ROLE_USER");
             clienteDAO.save(c3);
 
             Profissional p1 = new Profissional();
+            p1.setNome("Fulano Marcos");
             p1.setCPF("55.789.390-39");
             p1.setEmail("letras@editora.com");
+            p1.setSenha(encoder.encode("12345"));
             p1.setEspecialidade("Membros superiores");
             p1.setCurriculo("/dev/null");
+            p1.setPapel("ROLE_PROF");
             profissionalDAO.save(p1);
 
             Profissional p2 = new Profissional();
+            p2.setNome("Fulano Antonio");
+            p2.setCPF("55.789.390-40");
             p2.setEmail("record.editora@email.com");
+            p2.setSenha(encoder.encode("12345"));
             p2.setEspecialidade("Membros inferiores");
             p2.setCurriculo("/proc/shm1");
+            p2.setPapel("ROLE_PROF");
             profissionalDAO.save(p2);
 
             Profissional p3 = new Profissional();
+            p3.setNome("Fulano Beltrano");
+            p3.setCPF("55.789.390-41");
             p3.setEmail("objetiva@email.com");
+            p3.setSenha(encoder.encode("12345"));
             p3.setEspecialidade("Membros medianos");
             p3.setCurriculo("/proc/shm2");
+            p3.setPapel("ROLE_PROF");
             profissionalDAO.save(p3);
-
+/*
             Consulta con1 = new Consulta();
             con1.setCliente(c1);
             con1.setProfissional(p1);
@@ -88,7 +99,7 @@ public class SistemaAgendamentoApplication {
             Consulta con3 = new Consulta();
             con3.setCliente(c3);
             con3.setProfissional(p3);
-            consultaDAO.save(con3);
+            consultaDAO.save(con3);*/
         };
     }
 }
