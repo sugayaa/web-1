@@ -11,7 +11,6 @@ import br.ufscar.dc.dsw.domain.Consulta;
 
 @SuppressWarnings("unchecked")
 public interface IClienteDAO extends CrudRepository<Cliente, Long> {
-    Cliente findByConsulta(Consulta consulta);
     Cliente findById(long id);
     Cliente save(Cliente cliente);
     List<Cliente> findAll();
