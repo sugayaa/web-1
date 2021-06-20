@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+
 @Entity
 @Table(name = "Cliente")
 public class Cliente extends Pessoa {

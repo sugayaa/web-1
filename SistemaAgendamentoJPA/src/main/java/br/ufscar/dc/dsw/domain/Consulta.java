@@ -17,14 +17,16 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name = "Consulta")
-public class Consulta {
+public class Consulta extends AbstractEntity<Long> {
 
-    @Column(nullable = false, unique = false, length = 60)
+    @Column(nullable = true, unique = false, length = 60)
     private String nome;
 
+    @NotNull(message = "{NotNull.consulta.data}")
     @Column(nullable = false, length = 19)
     private String data;
 
+    @NotNull(message = "{NotNull.consulta.horario}")
     @Column(nullable = false, length = 15)
     private String horario;
 
