@@ -24,16 +24,13 @@ public class Consulta {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = false, length = 60)
-    private String nome;
-
     @Column(nullable = false, length = 19)
     private String data;
 
     @Column(nullable = false, length = 15)
     private String horario;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 500)
     private String url;
 
     @NotNull(message = "{NotNull.consulta.cliente}")
@@ -46,14 +43,6 @@ public class Consulta {
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
 
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getData() {
         return data;
@@ -99,7 +88,6 @@ public class Consulta {
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("[");
-        sb.append("Nome: " + nome + ", ");
         sb.append("data: " + data + ", ");
         sb.append("horario: " + horario + ", ");
         sb.append("url: " + url + ", ");

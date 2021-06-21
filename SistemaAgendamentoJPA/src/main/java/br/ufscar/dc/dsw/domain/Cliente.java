@@ -30,7 +30,6 @@ public class Cliente extends AbstractEntity{
     @Column(nullable = false, unique = false, length = 12)
     private String dataNascimento;
 
-    // Change to number and format ?
     @NotBlank
     @Column(nullable = false, unique = true, length = 20)
     private String telefone;

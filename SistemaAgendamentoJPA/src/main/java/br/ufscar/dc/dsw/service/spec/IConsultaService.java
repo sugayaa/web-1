@@ -16,5 +16,9 @@ public interface IConsultaService {
     List<Consulta> buscarTodos(Cliente c);
 
     List<Consulta> buscarTodos(Profissional p);
+    
+    Cliente buscarConsultaCliente(Cliente c, String data, String horario);
+    
+    Profissional buscarConsultaProfisssional(Profissional p, String data, String horario);
 }
 

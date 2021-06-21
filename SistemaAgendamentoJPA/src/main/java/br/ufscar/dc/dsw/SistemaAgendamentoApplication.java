@@ -55,6 +55,17 @@ public class SistemaAgendamentoApplication {
             c3.setNome("Fulano Silva");
             c3.setPapel("ROLE_USER");
             clienteDAO.save(c3);
+            
+            Cliente c4 = new Cliente();
+            c4.setEmail("dsw1ufscar@gmail.com");
+            c4.setSenha(encoder.encode("123"));
+            c4.setCPF("985.849.614-32");
+            c4.setNome("Ana");
+            c4.setTelefone("1133948223");
+            c4.setDataNascimento("02/11/1990");
+            c4.setSexo("Masculino");
+            c4.setPapel("ROLE_USER");
+            clienteDAO.save(c4);
 
             Profissional p1 = new Profissional();
             p1.setNome("Fulano Marcos");

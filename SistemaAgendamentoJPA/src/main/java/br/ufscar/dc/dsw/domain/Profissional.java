@@ -25,9 +25,7 @@ public class Profissional extends AbstractEntity{
     @Column(nullable = false, unique = false, length = 40)
     private String especialidade;
 
-    // Change to number and format ?
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = true, unique = true, length = 500)
     private String curriculo;
 
     @OneToMany(mappedBy = "profissional")

@@ -17,7 +17,9 @@ public interface IProfissionalDAO extends CrudRepository<Profissional, Long> {
     Profissional save(Profissional profissional);
     void deleteById(long id);
     List<Profissional> findAll();
+    Profissional findByCPF(String CPF);
 
     @Query("SELECT p FROM Profissional p WHERE p.email = :email")
     public Profissional getProfissionalByEmail(@Param("email") String email);
+    
 }

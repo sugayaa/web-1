@@ -11,6 +11,7 @@ public interface IProfissionalService {
     void excluir(Long id);
 
     Profissional buscarPorId(Long id);
+    Profissional buscaPorCPF(String CPF);
 
     List<Profissional> buscarTodos();
 

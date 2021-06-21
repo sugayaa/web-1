@@ -18,13 +18,24 @@
                         <li class="nav-item"><span class="nav-link active"
                                                    th:text="#{sidebar.titulo.profissional}"></span></li>
                         <li class="nav-item"><a class="nav-link"
-                                                th:href="@{/cliente/consultas}"> <i class="oi oi-plus"></i> <span
+                                                th:href="@{/cliente/listarConsulta}"> <i class="oi oi-plus"></i> <span
                                                                                     th:text="#{consulta.listar.label}"></span>
                             </a></li>
                             <li class="nav-item"><a class="nav-link"
-                                                    th:href="@{/cliente/listar}"> <i class="oi oi-spreadsheet"></i>
+                                                    th:href="@{/cliente/listarProfissional}"> <i class="oi oi-spreadsheet"></i>
                                                     <span th:text="#{profissional.listar.label}"></span>
                                 </a></li>
+                    </ul>
+                </div>
+                
+                <div sec:authorize="hasRole('ROLE_PROF')">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><span class="nav-link active"
+                                                   th:text="#{sidebar.titulo.consulta}"></span></li>
+                        <li class="nav-item"><a class="nav-link"
+                                                th:href="@{/profissional/listarConsulta}"> <i class="oi oi-plus"></i> <span
+                                                                                    th:text="#{consulta.listar.label}"></span>
+                            </a></li>
                     </ul>
                 </div>
 
