@@ -1,9 +1,4 @@
 package br.ufscar.dc.dsw;
-<<<<<<< HEAD:SistemaAgendamentoJPA/src/main/java/br/ufscar/dc/dsw/SistemaAgendamentoApplication.java
-
-import java.math.BigDecimal;
-=======
->>>>>>> master:SistemaAgendamentoJPA/src/main/java/br/ufscar/dc/dsw/SistemaAgendamento/SistemaAgendamentoApplication.java
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
