@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
         .authorizeRequests()
-        	.antMatchers("/listar").permitAll()
+        	.antMatchers("/listar/**", "/upload/**").permitAll()
             .antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**").permitAll()
             .antMatchers("/cliente/**").hasRole("USER")
             .antMatchers("/admin/**").hasRole("ADMIN")

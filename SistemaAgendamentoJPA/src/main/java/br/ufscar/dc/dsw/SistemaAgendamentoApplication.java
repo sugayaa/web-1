@@ -72,7 +72,7 @@ public class SistemaAgendamentoApplication {
             p1.setCPF("55.789.390-39");
             p1.setEmail("letras@editora.com");
             p1.setSenha(encoder.encode("12345"));
-            p1.setEspecialidade("Membros");
+            p1.setEspecialidade("superiores");
             p1.setCurriculo("/dev/null");
             p1.setPapel("ROLE_PROF");
             profissionalDAO.save(p1);
@@ -82,7 +82,7 @@ public class SistemaAgendamentoApplication {
             p2.setCPF("55.789.390-40");
             p2.setEmail("record.editora@email.com");
             p2.setSenha(encoder.encode("12345"));
-            p2.setEspecialidade("Membros inferiores");
+            p2.setEspecialidade("inferiores");
             p2.setCurriculo("/proc/shm1");
             p2.setPapel("ROLE_PROF");
             profissionalDAO.save(p2);
@@ -92,7 +92,7 @@ public class SistemaAgendamentoApplication {
             p3.setCPF("55.789.390-41");
             p3.setEmail("objetiva@email.com");
             p3.setSenha(encoder.encode("12345"));
-            p3.setEspecialidade("Membros medianos");
+            p3.setEspecialidade("medianos");
             p3.setCurriculo("/proc/shm2");
             p3.setPapel("ROLE_PROF");
             profissionalDAO.save(p3);

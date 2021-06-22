@@ -18,5 +18,6 @@ public interface IProfissionalService {
     List<Profissional> buscarTodos();
 
     boolean profissionalTemConsultas(Long id);
+    List<Profissional> buscarPorEspecialidade(String especialidade);
 
 }
