@@ -13,10 +13,9 @@ public interface IProfissionalService {
     Profissional buscarPorId(Long id);
     Profissional buscaPorCPF(String CPF);
 
-    List<Profissional> buscarPorEspecialidade(String especialidade);
-
     List<Profissional> buscarTodos();
 
     boolean profissionalTemConsultas(Long id);
+    List<Profissional> buscarPorEspecialidade(String especialidade);
 
 }

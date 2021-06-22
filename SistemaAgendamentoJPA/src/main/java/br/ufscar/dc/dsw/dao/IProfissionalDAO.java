@@ -22,4 +22,7 @@ public interface IProfissionalDAO extends CrudRepository<Profissional, Long> {
     @Query("SELECT p FROM Profissional p WHERE p.email = :email")
     public Profissional getProfissionalByEmail(@Param("email") String email);
     
+    @Query("SELECT p FROM Profissional p WHERE p.especialidade LIKE :especialidade")
+    public List<Profissional> getProfissionalByEspecialidade(@Param("especialidade") String especialidade);
+    
 }
