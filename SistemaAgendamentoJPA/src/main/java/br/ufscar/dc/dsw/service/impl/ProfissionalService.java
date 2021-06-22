@@ -37,6 +37,11 @@ public class ProfissionalService implements IProfissionalService {
     }
 
     @Transactional(readOnly = true)
+    public List<Profissional> buscarPorEspecialidade(String especialidade) {
+        return dao.findByEspecialidade(especialidade);
+    }
+
+    @Transactional(readOnly = true)
     public boolean profissionalTemConsultas(Long id) {
         return !dao.findById(id.longValue()).getConsultas().isEmpty();
     }

@@ -37,6 +37,8 @@ public class ProfissionalController {
     	model.addAttribute("consultas", daoCon.buscarTodos(profissional));
         return "profissional/listarConsulta";
     }
+
+
     
 	private Profissional getProfissional() {
 		ProfissionalDetails profissionalDetails = (ProfissionalDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

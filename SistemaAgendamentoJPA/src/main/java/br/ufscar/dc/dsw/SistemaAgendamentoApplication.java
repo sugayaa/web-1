@@ -72,7 +72,7 @@ public class SistemaAgendamentoApplication {
             p1.setCPF("55.789.390-39");
             p1.setEmail("letras@editora.com");
             p1.setSenha(encoder.encode("12345"));
-            p1.setEspecialidade("Membros superiores");
+            p1.setEspecialidade("Membros");
             p1.setCurriculo("/dev/null");
             p1.setPapel("ROLE_PROF");
             profissionalDAO.save(p1);

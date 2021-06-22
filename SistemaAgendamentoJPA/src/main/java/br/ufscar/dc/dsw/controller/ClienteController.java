@@ -45,6 +45,12 @@ public class ClienteController {
         return "cliente/listarProfissional";
     }
 
+    @GetMapping("/listarProfissionalEspecialidade/{especialidade}")
+    public String listarEspecialidade(@PathVariable("especialidade") String especialidade, ModelMap model) {
+    	model.addAttribute("profissionais", daoP.buscarPorEspecialidade(especialidade));
+        return "cliente/listarProfissionalEspecialidade";
+    }
+
     @GetMapping("/cadastrarConsulta/{id}")
     public String preCadastrarConsulta(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("profissional", daoP.buscarPorId(id));
