@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.util.List;
+
 import javax.mail.internet.InternetAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +22,8 @@ import br.ufscar.dc.dsw.service.impl.EmailService;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.IConsultaService;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
+
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/cliente")
@@ -46,9 +50,10 @@ public class ClienteController {
     }
 
     @GetMapping("/listarProfissionalEspecialidade/{especialidade}")
-    public String listarEspecialidade(@PathVariable("especialidade") String especialidade, ModelMap model) {
-    	model.addAttribute("profissionais", daoP.buscarPorEspecialidade(especialidade));
-        return "cliente/listarProfissionalEspecialidade";
+    public @ResponseBody List<Profissional> listarEspecialidade(@PathVariable("especialidade") String especialidade, ModelMap model) {
+    	// model.addAttribute("profissionais", daoP.buscarPorEspecialidade(especialidade));
+        // return "cliente/listarProfissionalEspecialidade";
+        return daoP.buscarPorEspecialidade(especialidade);
     }
 
     @GetMapping("/cadastrarConsulta/{id}")
