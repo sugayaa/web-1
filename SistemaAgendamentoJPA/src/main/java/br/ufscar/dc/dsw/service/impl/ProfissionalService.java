@@ -45,4 +45,10 @@ public class ProfissionalService implements IProfissionalService {
 	public Profissional buscaPorCPF(String CPF) {
     	return dao.findByCPF(CPF);
 	}
+    
+    @Transactional(readOnly = true)
+    public List<Profissional> buscarPorEspecialidade(String especialidade){
+    	especialidade = "%"+especialidade+"%";
+    	return dao.getProfissionalByEspecialidade(especialidade);
+    }
 }

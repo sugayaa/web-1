@@ -20,24 +20,19 @@ import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 
 @Controller
-@RequestMapping("/")
-public class ListaController {
+@RequestMapping("/listar")
+public class testeController {
 
 	@Autowired
 	private IProfissionalService dao;
 	
 	
-	@GetMapping("listar")
-	public String listaProfissionais(ModelMap model) {
-		model.addAttribute("profissionais", dao.buscarTodos());
-		return "/listar";
-	}
-	
-    @RequestMapping(value = "especialidade", method = RequestMethod.GET)
-    public @ResponseBody List<String> listarPorEspecialidade(@RequestBody String especialidade){
+    @RequestMapping(value = "/especialidade", method = RequestMethod.GET)
+    public @ResponseBody List<String> listarPorEspecialidade(@RequestParam("tipo") String especialidade){
     	List<Profissional> profissionais = dao.buscarPorEspecialidade(especialidade);
     	List<String> listaProfissional = new ArrayList<String>();
     	System.out.println("veio aqui #######################");
+    	System.out.println("Tipo = "+ especialidade);
     	for(Profissional p : profissionais) {
     		listaProfissional.add(p.getId() + "-"+ p.getNome() + "-" + p.getEmail() + "-" + p.getEspecialidade() + "-" + p.getCurriculo());
     	}
