@@ -2,6 +2,8 @@
 <html layout:decorate="~{layout}">
     <head>
         <meta charset="UTF-8" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/ajaxEspecialidades2.js}"></script>
     </head>
     <body>
         <section class="layout-content" layout:fragment="corpo">
@@ -12,6 +14,12 @@
                         <li class="nav-item active">
                             <i class="oi oi-caret-right"></i>
                             <span th:text="#{profissional.listar.label}"></span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <input type="text" id="especialidade" style="width: 200px;" placeholder="Especialidade" onkeyUp="apresentaEspecialidade()"/>
                         </li>
                     </ul>
                 </div>
