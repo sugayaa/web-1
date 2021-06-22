@@ -29,6 +29,7 @@ public class ProfissionalService implements IProfissionalService {
     public Profissional buscarPorId(Long id) {
         return dao.findById(id.longValue());
     }
+    
 
     @Transactional(readOnly = true)
     public List<Profissional> buscarTodos() {
@@ -40,4 +41,8 @@ public class ProfissionalService implements IProfissionalService {
         return !dao.findById(id.longValue()).getConsultas().isEmpty();
     }
 
+    @Transactional(readOnly = true)
+	public Profissional buscaPorCPF(String CPF) {
+    	return dao.findByCPF(CPF);
+	}
 }

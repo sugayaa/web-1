@@ -14,7 +14,7 @@
                             <span th:text="#{cliente.listar.label}"></span>
                         </li>
                     </ul>
-                    <a class="btn btn-primary btn-md" th:href="@{/clientes/cadastrar}" role="button"> 
+                    <a class="btn btn-primary btn-md" th:href="@{/admin/cadastrarCliente}" role="button"> 
                         <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
                         <span th:text="#{cliente.cadastrar.label}"></span>
                     </a>
@@ -30,27 +30,31 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th th:text="#{cliente.username.label}"></th>
                                 <th th:text="#{cliente.name.label}"></th>
-                                <th th:text="#{cliente.CPF.label}"></th>
-                                <th th:text="#{cliente.role.label}"></th>
+                                <th th:text="#{cliente.email.label}"></th>
+                                <th th:text="#{cliente.CPF.label}"></th>  
+                                <th th:text="#{cliente.telefone.label}"></th>
+                                <th th:text="#{cliente.sexo.label}"></th>
+                                <th th:text="#{cliente.data.label}"></th>
                                 <th th:text="#{acao.label}"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="cliente : ${clientes}">
                                 <td th:text="${cliente.id}"></td>
-                                <td th:text="${cliente.username}"></td>
-                                <td th:text="${cliente.name}"></td>
+                                <td th:text="${cliente.nome}"></td>
+                                <td th:text="${cliente.email}"></td>
                                 <td th:text="${cliente.CPF}"></td>
-                                <td th:text="${cliente.role}"></td>
+                                <td th:text="${cliente.telefone}"></td>
+                                <td th:text="${cliente.sexo}"></td>
+                                <td th:text="${cliente.dataNascimento}"></td>
                                 <td colspan="2">
-                                    <a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${cliente.id}) }"
+                                    <a class="btn btn-info btn-sm" th:href="@{/admin/editarCliente/{id} (id=${cliente.id}) }"
                                        role="button"> 
                                         <span class="oi oi-brush" th:title="#{link.editar.label}" aria-hidden="true"> </span>
                                     </a>
                                     <button
-                                        th:id="${'btn_clientes/excluir/' + cliente.id}"
+                                        th:id="${'btn_admin/excluirCliente/' + cliente.id}"
                                         type="button" class="btn btn-danger btn-sm"
                                                       data-toggle="modal" data-target="#myModal">
                                         <span class="oi oi-circle-x" th:title="#{link.excluir.label}" aria-hidden="true"></span>

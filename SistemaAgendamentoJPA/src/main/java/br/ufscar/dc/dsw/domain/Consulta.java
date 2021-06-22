@@ -15,12 +15,14 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Consulta")
-public class Consulta extends AbstractEntity<Long> {
+public class Consulta {
 
-    @Column(nullable = true, unique = false, length = 60)
-    private String nome;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull(message = "{NotNull.consulta.data}")
     @Column(nullable = false, length = 19)
@@ -30,7 +32,7 @@ public class Consulta extends AbstractEntity<Long> {
     @Column(nullable = false, length = 15)
     private String horario;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 500)
     private String url;
 
     @NotNull(message = "{NotNull.consulta.cliente}")
@@ -43,14 +45,6 @@ public class Consulta extends AbstractEntity<Long> {
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
 
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getData() {
         return data;
@@ -96,7 +90,6 @@ public class Consulta extends AbstractEntity<Long> {
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("[");
-        sb.append("Nome: " + nome + ", ");
         sb.append("data: " + data + ", ");
         sb.append("horario: " + horario + ", ");
         sb.append("url: " + url + ", ");

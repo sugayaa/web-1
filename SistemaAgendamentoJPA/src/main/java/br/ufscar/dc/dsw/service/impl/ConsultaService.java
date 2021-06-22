@@ -37,5 +37,15 @@ public class ConsultaService implements IConsultaService {
     public List<Consulta> buscarTodos(Profissional p) {
         return dao.findAllByProfissional(p);
     }
+    
+    @Transactional(readOnly = true)
+    public Cliente buscarConsultaCliente(Cliente c, String data, String horario) {
+    	return dao.getConsultaByCliente(c, data, horario);
+    }
+    
+    @Transactional(readOnly = true)
+    public Profissional buscarConsultaProfisssional(Profissional p, String data, String horario) {
+    	return dao.getConsultaByProfissional(p, data, horario);
+    }
 }
 

@@ -18,7 +18,23 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+	                     </div>
+	                     <div sec:authorize="isAnonymous()">
+		                        <div th:if="${profissionais == null}">
+			                        <div style='right:200px; position: absolute'>
+			                        	<a th:href="@{/listar}">
+			                        		<button type="button" class="btn btn-dark navbar-toggle" th:text="#{profissional.listar.label}"></button>
+			                        	</a>
+			                        </div>
+			                    </div>
+			                    <div th:unless="${profissionais == null}">
+			                        <div style='right:200px; position: absolute'>
+			                        	<a th:href="@{/login}">
+			                        		<button type="button" class="btn btn-dark navbar-toggle" th:text="#{cliente.username.label}"></button>
+			                        	</a>
+			                        </div>
+			                    </div>
+		                 </div>
                         <div style="right: 100px; position: absolute">
                             <a th:href="@{''(lang=pt)}"><img alt=""
                                                              th:src="@{/image/Brasil.gif}" style="width: 30px;" /></a> <a

@@ -16,7 +16,7 @@ public class ProfissionalDetailsServiceImplementation implements UserDetailsServ
     @Override
     public UserDetails loadUserByUsername(String nome)
             throws UsernameNotFoundException {
-        Profissional profissional = dao.getUserByUsername(nome);
+        Profissional profissional = dao.getProfissionalByEmail(nome);
          
         if (profissional == null) {
             throw new UsernameNotFoundException("Profissional não foi encontrado.");
