@@ -27,6 +27,7 @@ import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Consulta;
 
 import br.ufscar.dc.dsw.service.spec.IClienteService;
+import br.ufscar.dc.dsw.service.spec.IConsultaService;
 
 @CrossOrigin
 @RestController
@@ -85,14 +86,14 @@ public class ClienteRestController {
         consulta.setData((String) map.get("data"));
         consulta.setHorario((String) map.get("horario"));
         consulta.setUrl((String) map.get("url"));
-        consulta.setCliente((String) map.get("cliente"));
-        consulta.setProfissional((String) map.get("profissional"));
+        consulta.setCliente((Cliente) map.get("cliente"));
+        consulta.setProfissional((Profissional) map.get("profissional"));
 
     }
 
     @GetMapping(path = "/clientes")
     public ResponseEntity<List<Cliente>> lista() {
-        List<Cliente> lista = service.findAll();
+        List<Cliente> lista = service.buscarTodos();
 
         if (lista.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -102,7 +103,7 @@ public class ClienteRestController {
 
     @GetMapping(path = "/clientes/{id}")
     public ResponseEntity<Cliente> lista(@PathVariable("id") long id) {
-        Cliente cliente = service.findById(id);
+        Cliente cliente = service.buscarPorId(id);
         if (cliente == null) {
             return ResponseEntity.notFound().build();
         }
@@ -110,10 +111,10 @@ public class ClienteRestController {
     }
 
     @GetMapping(path = "/clientes/{id}/consultas")
-    public ResponseEntity<List<Cliente>> listaDeConsultas(@PathVariable("id") long id) {
+    public ResponseEntity<List<Consulta>> listaDeConsultas(@PathVariable("id") long id) {
         // service.findById retorna cliente
         // cons_service.buscarTodos retorna todas as consultas de dado cliente
-        List<Cliente> lista = cons_service.buscarTodos(service.findById(id));
+        List<Consulta> lista = cons_service.buscarTodos(service.buscarPorId(id));
 
         if (lista.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -130,7 +131,7 @@ public class ClienteRestController {
             if (isJSONValid(json.toString())) {
                 Cliente cliente = new Cliente();
                 parse(cliente, json);
-                service.save(cliente);
+                service.salvar(cliente);
                 return ResponseEntity.ok(cliente);
             } else {
                 return ResponseEntity.badRequest().body(null);
@@ -145,12 +146,12 @@ public class ClienteRestController {
     public ResponseEntity<Cliente> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
         try {
             if (isJSONValid(json.toString())) {
-                cliente cliente = service.findById(id);
+                Cliente cliente = service.buscarPorId(id);
                 if (cliente == null) {
                     return ResponseEntity.notFound().build();
                 } else {
                     parse(cliente, json);
-                    service.save(cliente);
+                    service.salvar(cliente);
                     return ResponseEntity.ok(cliente);
                 }
             } else {
@@ -164,11 +165,11 @@ public class ClienteRestController {
     @DeleteMapping(path = "/clientes/{id}")
     public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
 
-        Cliente cliente = service.findById(id);
+        Cliente cliente = service.buscarPorId(id);
         if (cliente == null) {
             return ResponseEntity.notFound().build();
         } else {
-            service.delete(id);
+            service.excluir(id);
             return ResponseEntity.noContent().build();
         }
     }

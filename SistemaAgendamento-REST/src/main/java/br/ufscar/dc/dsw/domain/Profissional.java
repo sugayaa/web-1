@@ -14,8 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
+@JsonIgnoreProperties(value = { "senha", "CPF" })
 @Entity
 @Table(name = "Profissional")
 public class Profissional extends AbstractEntity{

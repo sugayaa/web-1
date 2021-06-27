@@ -16,6 +16,7 @@ br/ufscar/dc/dsw/domain/Cliente.class
 br/ufscar/dc/dsw/domain/AbstractEntity.class
 br/ufscar/dc/dsw/controller/ListaController.class
 br/ufscar/dc/dsw/controller/ErrorViewController.class
+br/ufscar/dc/dsw/controller/ClienteRestController.class
 br/ufscar/dc/dsw/service/spec/IConsultaService.class
 br/ufscar/dc/dsw/SistemaAgendamentoApplication.class
 br/ufscar/dc/dsw/security/ClienteDetails.class
