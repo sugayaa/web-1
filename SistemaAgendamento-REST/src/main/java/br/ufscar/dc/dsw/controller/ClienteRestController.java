@@ -59,11 +59,16 @@ public class ClienteRestController {
         }
 
         cliente.setNome((String) json.get("nome"));
-        /*TODO: Fill with other attributes*/
-        // Consulta consulta = new Consulta();
-        // parse(consulta, json);
-        // cliente.setConsulta(consulta);
-        /*CLOSE TODO*/
+        cliente.setEmail((String) json.get("email"));
+        cliente.setSenha((String) json.get("senha"));
+        cliente.setCPF((String) json.get("cpf"));
+        cliente.setPapel((String) json.get("papel"));
+
+        //cliente specific
+        cliente.setSexo((String) json.get("sexo"));
+        cliente.setDataNascimento((String) json.get("dataNascimento"));
+        cliente.setTelefone((String) json.get("telefone"));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -77,10 +82,12 @@ public class ClienteRestController {
             consulta.setId((Long) id);
         }
 
+        consulta.setData((String) map.get("data"));
         consulta.setHorario((String) map.get("horario"));
         consulta.setUrl((String) map.get("url"));
-        /*TODO: Fill with other attributes*/
-        /*CLOSE TODO*/
+        consulta.setCliente((String) map.get("cliente"));
+        consulta.setProfissional((String) map.get("profissional"));
+
     }
 
     @GetMapping(path = "/clientes")
@@ -116,54 +123,53 @@ public class ClienteRestController {
 
 
 
-    //TODO: update to clientes
-    @PostMapping(path = "/cidades")
-	@ResponseBody
-	public ResponseEntity<Cidade> cria(@RequestBody JSONObject json) {
-		try {
-			if (isJSONValid(json.toString())) {
-				Cidade cidade = new Cidade();
-				parse(cidade, json);
-				service.save(cidade);
-				return ResponseEntity.ok(cidade);
-			} else {
-				return ResponseEntity.badRequest().body(null);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-		}
-	}
+    @PostMapping(path = "/clientes")
+    @ResponseBody
+    public ResponseEntity<Cliente> cria(@RequestBody JSONObject json) {
+        try {
+            if (isJSONValid(json.toString())) {
+                Cliente cliente = new Cliente();
+                parse(cliente, json);
+                service.save(cliente);
+                return ResponseEntity.ok(cliente);
+            } else {
+                return ResponseEntity.badRequest().body(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
+        }
+    }
 
-	@PutMapping(path = "/cidades/{id}")
-	public ResponseEntity<Cidade> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
-		try {
-			if (isJSONValid(json.toString())) {
-				Cidade cidade = service.findById(id);
-				if (cidade == null) {
-					return ResponseEntity.notFound().build();
-				} else {
-					parse(cidade, json);
-					service.save(cidade);
-					return ResponseEntity.ok(cidade);
-				}
-			} else {
-				return ResponseEntity.badRequest().body(null);
-			}
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-		}
-	}
+    @PutMapping(path = "/clientes/{id}")
+    public ResponseEntity<Cliente> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
+        try {
+            if (isJSONValid(json.toString())) {
+                cliente cliente = service.findById(id);
+                if (cliente == null) {
+                    return ResponseEntity.notFound().build();
+                } else {
+                    parse(cliente, json);
+                    service.save(cliente);
+                    return ResponseEntity.ok(cliente);
+                }
+            } else {
+                return ResponseEntity.badRequest().body(null);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
+        }
+    }
 
-	@DeleteMapping(path = "/cidades/{id}")
-	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
+    @DeleteMapping(path = "/clientes/{id}")
+    public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
 
-		Cidade cidade = service.findById(id);
-		if (cidade == null) {
-			return ResponseEntity.notFound().build();
-		} else {
-			service.delete(id);
-			return ResponseEntity.noContent().build();
-		}
-	}
+        Cliente cliente = service.findById(id);
+        if (cliente == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
