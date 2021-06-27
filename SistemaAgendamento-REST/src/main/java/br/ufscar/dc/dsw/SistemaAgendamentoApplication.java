@@ -11,6 +11,7 @@ import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.dao.IConsultaDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Profissional;
+import br.ufscar.dc.dsw.domain.Consulta;
 
 @SpringBootApplication
 public class SistemaAgendamentoApplication {
@@ -96,12 +97,16 @@ public class SistemaAgendamentoApplication {
             p3.setCurriculo("/proc/shm2");
             p3.setPapel("ROLE_PROF");
             profissionalDAO.save(p3);
-/*
+
             Consulta con1 = new Consulta();
             con1.setCliente(c1);
             con1.setProfissional(p1);
+            con1.setUrl("aloalo.google.com");
+            con1.setHorario("10:04:00");
+            con1.setData("30/04/2018");
             consultaDAO.save(con1);
 
+            /*
             Consulta con2 = new Consulta();
             con2.setCliente(c2);
             con2.setProfissional(p2);
