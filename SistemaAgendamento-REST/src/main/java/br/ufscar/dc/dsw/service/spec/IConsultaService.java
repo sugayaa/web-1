@@ -13,6 +13,8 @@ public interface IConsultaService {
 
     Consulta buscaPorId(Long id);
 
+    List<Consulta> buscarTodos();
+    
     List<Consulta> buscarTodos(Cliente c);
 
     List<Consulta> buscarTodos(Profissional p);

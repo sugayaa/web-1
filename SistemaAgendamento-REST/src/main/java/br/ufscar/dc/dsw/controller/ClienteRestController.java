@@ -110,7 +110,7 @@ public class ClienteRestController {
         return ResponseEntity.ok(cliente);
     }
 
-    @GetMapping(path = "/clientes/{id}/consultas")
+    @GetMapping(path = "/consultas/clientes/{id}")
     public ResponseEntity<List<Consulta>> listaDeConsultas(@PathVariable("id") long id) {
         // service.findById retorna cliente
         // cons_service.buscarTodos retorna todas as consultas de dado cliente

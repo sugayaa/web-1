@@ -41,6 +41,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // TODO: adjust as we add another paths
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+	    http.csrf().disable().authorizeRequests()
+	    // Controladores REST
+	    .antMatchers("/clientes", "/profissionais", "/consultas").permitAll()
+	    .antMatchers("/clientes/{\\d+}", "/profissionais/{\\d+}").permitAll()
+	    .antMatchers("/consultas/{\\d+}").permitAll()
+	    .antMatchers("/profissionais/especialidades/{\\w+}").permitAll()
+	    .antMatchers("/consultas/clientes/{\\d+}").permitAll()
+	    .antMatchers("/consultas/profissionais/{\\d+}").permitAll()
+	    
+	    // Demais linhas
+	    .anyRequest().authenticated()
+	    .and()
+	    .formLogin().loginPage("/login").permitAll()
+	    .and()
+	    .logout().logoutSuccessUrl("/").permitAll();
+    }
+    
+    /* @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http
         .authorizeRequests()
         	.antMatchers("/listar/**", "/upload/**").permitAll()
@@ -57,5 +76,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .logout()
             .logoutSuccessUrl("/")
             .permitAll();
-    }
+    } */
 }

@@ -37,7 +37,7 @@ $(document).ready(function() {
                         s += '     		   <span class="oi oi-arrow-circle-bottom" th:title="#{profissional.curriculo.arquivo}" aria-hidden="true"> </span>';
                         s += '          </a>'; 
 						s += '   <td '+autenticado +' colspan="2">';
-						s += '     <a class="btn btn-info btn-sm" href="cliente/cadastrarConsulta/' +id+'"  role="button"> ';
+						s += '     <a class="btn btn-info btn-sm" href="cadastrarConsulta/' +id+'"  role="button"> ';
 						s += '        <span class="oi oi-calendar" th:title="#{link.consulta.label}" aria-hidden="true"> </span>';
 						s += '      </a>';
 						s += '    </td>';

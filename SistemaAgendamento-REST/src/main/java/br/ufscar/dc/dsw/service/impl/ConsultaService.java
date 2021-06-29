@@ -27,7 +27,12 @@ public class ConsultaService implements IConsultaService {
     public Consulta buscaPorId(Long id) {
         return dao.findById(id.longValue());
     }
-
+    
+    @Transactional(readOnly = true)
+    public List<Consulta> buscarTodos(){
+    	return (List<Consulta>) dao.findAll();
+    };
+    
     @Transactional(readOnly = true)
     public List<Consulta> buscarTodos(Cliente c) {
         return dao.findAllByCliente(c);

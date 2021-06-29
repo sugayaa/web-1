@@ -3,8 +3,8 @@ $(document).ready(function() {
 		$('#especialidade').on('keyup', function() {
 			var especialidade = $(this).val();
 			console.log(especialidade)
-			//$("especialidades").innerHTML("");
-			var link = /*[[@{/cliente/cadastrarConsulta/}]]*/'';
+			//$("especialidades").innerHTML = "";
+			var link = /*[[@{/cliente/}]]*/'';
 			var autenticado = /*[[ sec:authorize="isAuthenticated()"]]*/'';
 			console.log("link = "  +link);
 			$.ajax({
@@ -13,7 +13,7 @@ $(document).ready(function() {
 				data : {tipo : especialidade},
 				success : function(result) {
 					var divBody = document.getElementById("especialidades");
-					divBody.innerHTML = "";
+					//divBody.innerHTML = "";
 					var aux = document.createElement("div");
 					var s = '';
 					//s += '<tbody id="especialidades" name="especialidades">';
@@ -37,7 +37,7 @@ $(document).ready(function() {
                         s += '     		   <span class="oi oi-arrow-circle-bottom" th:title="#{profissional.curriculo.arquivo}" aria-hidden="true"> </span>';
                         s += '          </a>'; 
 						s += '   <td '+autenticado +' colspan="2">';
-						s += '     <a class="btn btn-info btn-sm" href="' + link + 'cadastrarConsulta/' +id+'"  role="button"> ';
+						s += '     <a class="btn btn-info btn-sm" href="cadastrarConsulta/' +id+'"  role="button"> ';
 						s += '        <span class="oi oi-calendar" th:title="#{link.consulta.label}" aria-hidden="true"> </span>';
 						s += '      </a>';
 						s += '    </td>';

@@ -108,7 +108,7 @@ public class ProfissionalRestController {
         return ResponseEntity.ok(profissional);
     }
 
-    @GetMapping(path = "/profissionais/{id}/consultas")
+    @GetMapping(path = "/consultas/profissionais/{id}")
     public ResponseEntity<List<Consulta>> listaDeConsultas(@PathVariable("id") long id) {
         List<Consulta> lista = cons_service.buscarTodos(service.buscarPorId(id));
 
