@@ -47,6 +47,11 @@ public class Consulta {
     @JoinColumn(name = "profissional_id")
     private Profissional profissional;
 
+    @Column(length = 50)
+    private String nomeProfissional;
+
+    @Column(length = 50)
+    private String nomeCliente;
 
     public Long getId() {
         return id;
@@ -85,6 +90,7 @@ public class Consulta {
     }
 
     public void setCliente(Cliente cliente) {
+        this.nomeCliente = cliente.getNome();
         this.cliente = cliente;
     }
 
@@ -93,7 +99,24 @@ public class Consulta {
     }
 
     public void setProfissional(Profissional profissional) {
+        this.nomeProfissional = profissional.getNome();
         this.profissional = profissional;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getNomeProfissional() {
+        return nomeProfissional;
+    }
+
+    public void setNomeProfissional(String nomeProfissional) {
+        this.nomeProfissional = nomeProfissional;
     }
 
     @Override

@@ -70,6 +70,7 @@ public class ConsultaRestController {
     @GetMapping(path = "/consultas/{id}")
     public ResponseEntity<Consulta> lista(@PathVariable("id") long id) {
         Consulta consulta = service.buscaPorId(id);
+        System.out.println(consulta.getNomeCliente());
         if (consulta == null) {
             return ResponseEntity.notFound().build();
         }
