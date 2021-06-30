@@ -110,6 +110,7 @@ public class ClienteRestController {
         return ResponseEntity.ok(cliente);
     }
 
+    /*
     @GetMapping(path = "/consultas/clientes/{id}")
     public ResponseEntity<List<Consulta>> listaDeConsultas(@PathVariable("id") long id) {
         // service.findById retorna cliente
@@ -121,6 +122,7 @@ public class ClienteRestController {
         }
         return ResponseEntity.ok(lista);
     }
+    */
 
 
 

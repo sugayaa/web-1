@@ -75,4 +75,24 @@ public class ConsultaRestController {
         }
         return ResponseEntity.ok(consulta);
     }
+
+    @GetMapping(path = "/consultas/clientes/{id}")
+    public ResponseEntity<List<Consulta>> listaConsultasPorCliente(@PathVariable("id") long id) {
+        Cliente cliente = clienteService.buscarPorId(id);
+        List<Consulta> lista = service.buscarTodos(cliente);
+        if (lista.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
+
+    @GetMapping(path = "/consultas/profissionais/{id}")
+    public ResponseEntity<List<Consulta>> listaConsultasPorProfissional(@PathVariable("id") long id) {
+        Profissional profissional = profissionalService.buscarPorId(id);
+        List<Consulta> lista = service.buscarTodos(profissional);
+        if (lista.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(lista);
+    }
 }
