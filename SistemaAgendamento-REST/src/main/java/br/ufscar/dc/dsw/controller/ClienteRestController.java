@@ -48,7 +48,7 @@ public class ClienteRestController {
     }
 
     @SuppressWarnings("unchecked")
-    private void parse(Cliente cliente, JSONObject json) {
+    private void parseNew(Cliente cliente, JSONObject json) {
 
         Object id = json.get("id");
         if (id != null) {
@@ -58,7 +58,6 @@ public class ClienteRestController {
                 cliente.setId((Long) id);
             }
         }
-
         cliente.setNome((String) json.get("nome"));
         cliente.setEmail((String) json.get("email"));
         cliente.setSenha((String) json.get("senha"));
@@ -71,7 +70,39 @@ public class ClienteRestController {
         cliente.setTelefone((String) json.get("telefone"));
 
     }
+    
+    //parseSubs, substitui os dados passados
+    @SuppressWarnings("unchecked")
+    private void parseSubs(Cliente cliente, JSONObject json) {
 
+        Object id = json.get("id");
+        if (id != null) {
+            if (id instanceof Integer) {
+                cliente.setId(((Integer) id).longValue());
+            } else {
+                cliente.setId((Long) id);
+            }
+        }
+        if(json.get("nome") != null) 
+        	cliente.setNome((String) json.get("nome"));
+        if(json.get("email") != null) 
+        	cliente.setEmail((String) json.get("email"));
+        if(json.get("senha") != null) 
+        	cliente.setSenha((String) json.get("senha"));
+        if(json.get("cpf") != null)
+        	cliente.setCPF((String) json.get("cpf"));
+        if(json.get("papel") != null)
+        	cliente.setPapel((String) json.get("papel"));
+
+        //cliente specific
+        if(json.get("sexo") != null)
+        	cliente.setSexo((String) json.get("sexo"));
+        if(json.get("dataNascimento") != null)
+        	cliente.setDataNascimento((String) json.get("dataNascimento"));
+        if(json.get("telefone") != null)
+        	cliente.setTelefone((String) json.get("telefone"));
+    }
+    
     @SuppressWarnings("unchecked")
     private void parse(Consulta consulta, JSONObject json) {
         Map<String, Object> map = (Map<String, Object>) json.get("consulta");
@@ -125,14 +156,13 @@ public class ClienteRestController {
     */
 
 
-
     @PostMapping(path = "/clientes")
     @ResponseBody
     public ResponseEntity<Cliente> cria(@RequestBody JSONObject json) {
         try {
             if (isJSONValid(json.toString())) {
                 Cliente cliente = new Cliente();
-                parse(cliente, json);
+                parseNew(cliente, json);
                 service.salvar(cliente);
                 return ResponseEntity.ok(cliente);
             } else {
@@ -152,7 +182,7 @@ public class ClienteRestController {
                 if (cliente == null) {
                     return ResponseEntity.notFound().build();
                 } else {
-                    parse(cliente, json);
+                    parseSubs(cliente, json);
                     service.salvar(cliente);
                     return ResponseEntity.ok(cliente);
                 }
@@ -160,6 +190,7 @@ public class ClienteRestController {
                 return ResponseEntity.badRequest().body(null);
             }
         } catch (Exception e) {
+        	e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
         }
     }

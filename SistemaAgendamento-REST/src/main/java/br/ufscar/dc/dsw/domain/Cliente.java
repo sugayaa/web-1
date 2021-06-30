@@ -79,6 +79,7 @@ public class Cliente extends AbstractEntity{
         sb.append("data nascimento: " + dataNascimento + ", ");
         sb.append("telefone: " + telefone + ", ");
         sb.append("sexo: " + sexo + ", ");
+        sb.append(this.getSenha());
         sb.append("]");
         return sb.toString(); 
     }
