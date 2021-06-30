@@ -48,7 +48,7 @@ public class ProfissionalRestController {
     }
 
     @SuppressWarnings("unchecked")
-    private void parse(Profissional profissional, JSONObject json) {
+    private void parseNew(Profissional profissional, JSONObject json) {
 
         Object id = json.get("id");
         if (id != null) {
@@ -67,9 +67,37 @@ public class ProfissionalRestController {
 
         //profissional specific
         profissional.setEspecialidade((String) json.get("especialidade"));
-
     }
 
+    //parseSubs, substitui os dados passados
+    @SuppressWarnings("unchecked")
+    private void parseSubs(Profissional profissional, JSONObject json) {
+
+        Object id = json.get("id");
+        if (id != null) {
+            if (id instanceof Integer) {
+                profissional.setId(((Integer) id).longValue());
+            } else {
+                profissional.setId((Long) id);
+            }
+        }
+
+        if(json.get("nome") != null) 
+        	profissional.setNome((String) json.get("nome"));
+        if(json.get("email") != null) 
+        	profissional.setEmail((String) json.get("email"));
+        if(json.get("senha") != null) 
+        	profissional.setSenha((String) json.get("senha"));
+        if(json.get("cpf") != null) 
+        	profissional.setCPF((String) json.get("cpf"));
+        if(json.get("papel") != null) 
+        	profissional.setPapel((String) json.get("papel"));
+
+        //profissional specific
+        if(json.get("especialidade") != null) 
+        	profissional.setEspecialidade((String) json.get("especialidade"));
+    }
+    
     @SuppressWarnings("unchecked")
     private void parse(Consulta consulta, JSONObject json) {
         Map<String, Object> map = (Map<String, Object>) json.get("consulta");
@@ -126,7 +154,7 @@ public class ProfissionalRestController {
         try {
             if (isJSONValid(json.toString())) {
                 Profissional profissional = new Profissional();
-                parse(profissional, json);
+                parseNew(profissional, json);
                 service.salvar(profissional);
                 return ResponseEntity.ok(profissional);
             } else {
@@ -146,7 +174,7 @@ public class ProfissionalRestController {
                 if (profissional == null) {
                     return ResponseEntity.notFound().build();
                 } else {
-                    parse(profissional, json);
+                    parseSubs(profissional, json);
                     service.salvar(profissional);
                     return ResponseEntity.ok(profissional);
                 }
